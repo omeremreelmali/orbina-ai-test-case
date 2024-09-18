@@ -6,6 +6,7 @@ import { Button, Input } from "@headlessui/react";
 import { useApiKey } from "@/hooks/useApiKey";
 import { weatherService } from "@/services/WeatherService";
 import { AlertDialog } from "@radix-ui/themes";
+import { useToast } from "@/components/Toast/Toast";
 
 type Inputs = {
   apiKey: string;
@@ -13,7 +14,7 @@ type Inputs = {
 
 export default function AuthSection() {
   const { apiKey, saveApiKey } = useApiKey();
-
+  const { open } = useToast();
   const {
     register,
     handleSubmit,
@@ -30,12 +31,12 @@ export default function AuthSection() {
     if (response.success) {
     } else {
       console.log("response", response);
-      // open({
-      //   message: response.message,
-      //   variant: "error",
-      //   position: "bottom-right",
-      //   duration: 3000
-      // });
+      open({
+        message: response.message,
+        variant: "error",
+        position: "bottom-right",
+        duration: 3000
+      });
     }
     console.log("response GELEN ", response);
   };
