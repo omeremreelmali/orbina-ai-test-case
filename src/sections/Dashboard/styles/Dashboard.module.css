@@ -1,0 +1,10 @@
+.tabs {
+  color: rgb(185, 185, 185);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.buttonActive {
+  color: #000;
+  border-bottom: 2px solid #000;
+}

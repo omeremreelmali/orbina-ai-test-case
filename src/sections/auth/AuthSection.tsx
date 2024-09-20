@@ -7,6 +7,12 @@ import { useApiKey } from "@/hooks/useApiKey";
 import { weatherService } from "@/services/WeatherService";
 import { AlertDialog } from "@radix-ui/themes";
 import { useToast } from "@/components/Toast/Toast";
+import { Routes } from "@/constants/Routes";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { TURKEY_CITIES } from "@/constants/Cities";
+import { setSelectedCity, setWeatherCurrent } from "@/redux/Slices/Weather";
+import { IWeatherCurrentResponse } from "@/types/weather";
 
 type Inputs = {
   apiKey: string;
@@ -14,7 +20,10 @@ type Inputs = {
 
 export default function AuthSection() {
   const { apiKey, saveApiKey } = useApiKey();
+  const dispatch = useDispatch();
+  const router = useRouter();
   const { open } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -22,20 +31,34 @@ export default function AuthSection() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    // saveApiKey(data.apiKey);
+    const initialCity =
+      TURKEY_CITIES.find((city) => city.id == "34") || TURKEY_CITIES[0];
+
     const response = await weatherService.getWeather(
-      41.0082,
-      28.9784,
+      initialCity?.longitude,
+      initialCity?.latitude,
       data.apiKey
     );
+
     if (response.success) {
+      const weatherCurrent = response.data as IWeatherCurrentResponse;
+      saveApiKey(data.apiKey);
+      dispatch(setSelectedCity(initialCity));
+      dispatch(setWeatherCurrent(weatherCurrent));
+      open({
+        message: "API Key başarıyla kaydedildi",
+        variant: "success",
+        position: "bottom-right",
+        duration: 2000
+      });
+      router.push(Routes.DASHBOARD);
     } else {
       console.log("response", response);
       open({
         message: response.message,
         variant: "error",
         position: "bottom-right",
-        duration: 3000
+        duration: 2000
       });
     }
     console.log("response GELEN ", response);

@@ -4,6 +4,7 @@ import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import { ToastProvider } from "@/components/Toast/Toast";
+import { ReduxProvider } from "@/redux/ReduxProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,9 +32,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Theme>
-          <ToastProvider>{children}</ToastProvider>
-        </Theme>
+        <ReduxProvider>
+          <Theme>
+            <ToastProvider>{children}</ToastProvider>
+          </Theme>
+        </ReduxProvider>
       </body>
     </html>
   );

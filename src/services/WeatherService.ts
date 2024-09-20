@@ -5,9 +5,9 @@ import { WeatherApi } from "@/constants/Api";
 class WeatherService {
   constructor() {}
 
-  async getWeather(lat: number, lon: number, apiKeyValue: string) {
+  async getWeather(lon: number, lat: number, apiKeyValue: string) {
     const response = await httpClient.get<any>(
-      WeatherApi.currentWeather(lat, lon, apiKeyValue)
+      WeatherApi.currentWeather(lon, lat, apiKeyValue)
     );
     return response;
   }
@@ -18,6 +18,20 @@ class WeatherService {
     );
     return response;
   }
+
+  async getWeatherWeeklyByCity(city: CityName, apiKeyValue: string) {
+    const response = await httpClient.get<any>(
+      WeatherApi.weeklyWeatherByCity(city, apiKeyValue)
+    );
+    return response;
+  }
+  async getWeatherWeekly(lon: number, lat: number, apiKeyValue: string) {
+    const response = await httpClient.get<any>(
+      WeatherApi.weeklyWeather(lon, lat, apiKeyValue)
+    );
+    return response;
+  }
 }
+
 
 export const weatherService = new WeatherService();

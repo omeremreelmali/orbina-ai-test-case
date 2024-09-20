@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+
+
+
+.city {
+  fill-opacity: 1;
+  stroke: white;
+  stroke-opacity: 1;
+  stroke-width: 0.5;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+.city:hover {
+  fill: #a9a9a9;
+}
+
+.showCityName {
+  background-color: #f39c12;
+  border-radius: 10px;
+  color: #fff;
+  position: absolute;
+  padding: 15px 25px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 16px;
+}
+
+.showCityNameActive {
+  opacity: 1;
+  visibility: visible;
+}

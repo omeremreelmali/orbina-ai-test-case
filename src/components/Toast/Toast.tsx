@@ -1,7 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback } from "react";
-import * as AlertDialog from "@radix-ui/react-alert-dialog";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect
+} from "react";
 
 type ToastVariant = "success" | "error" | "warning" | "info";
 type ToastPosition = "top-right" | "top-left" | "bottom-right" | "bottom-left";
@@ -29,12 +34,16 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   const open = useCallback((newOptions: ToastOptions) => {
     setOptions(newOptions);
     setIsOpen(true);
-    if (newOptions.duration) {
-      setTimeout(() => setIsOpen(false), newOptions.duration);
-    }
   }, []);
 
   const close = useCallback(() => setIsOpen(false), []);
+
+  useEffect(() => {
+    if (isOpen && options.duration) {
+      const timer = setTimeout(() => close(), options.duration);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, options.duration, close]);
 
   const positionClasses = {
     "top-right": "top-4 right-4",
@@ -53,20 +62,15 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   return (
     <ToastContext.Provider value={{ open, close }}>
       {children}
-      <AlertDialog.Root open={isOpen} onOpenChange={setIsOpen}>
-        <AlertDialog.Portal>
-          <AlertDialog.Overlay className="fixed inset-0 " />
-          <AlertDialog.Content
-            className={`fixed max-w-sm rounded-lg p-4 shadow-lg ${
-              positionClasses[options.position || "bottom-right"]
-            } ${variantClasses[options.variant || "info"]}`}
-          >
-            <AlertDialog.Title className="text-lg font-semibold">
-              {options.message}
-            </AlertDialog.Title>
-          </AlertDialog.Content>
-        </AlertDialog.Portal>
-      </AlertDialog.Root>
+      {isOpen && (
+        <div
+          className={`fixed max-w-sm rounded-lg p-4 shadow-lg transition-opacity duration-300 ${
+            positionClasses[options.position || "bottom-right"]
+          } ${variantClasses[options.variant || "info"]}`}
+        >
+          <p className="text-md font-semibold">{options.message}</p>
+        </div>
+      )}
     </ToastContext.Provider>
   );
 };

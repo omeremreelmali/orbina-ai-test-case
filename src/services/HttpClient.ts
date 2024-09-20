@@ -11,18 +11,10 @@ import axios, {
 } from "axios";
 export class HttpClient {
   private axiosInstance: AxiosInstance;
-  private config: AxiosRequestConfig;
-
   constructor(baseURL?: string) {
     this.axiosInstance = axios.create({
       baseURL: baseURL ? baseURL : HOST_API
     });
-    this.config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: ""
-      }
-    };
   }
 
   public async get<T>(
@@ -31,7 +23,6 @@ export class HttpClient {
   ): Promise<IBaseResponse<T>> {
     try {
       const response: AxiosResponse<T> = await this.axiosInstance.get(url, {
-        ...this.config,
         ...config
       });
       return {
@@ -54,7 +45,7 @@ export class HttpClient {
       const response: AxiosResponse<T> = await this.axiosInstance.post(
         url,
         data,
-        { ...this.config, ...config }
+        { ...config }
       );
       return {
         status: response.status,
@@ -76,7 +67,7 @@ export class HttpClient {
       const response: AxiosResponse<T> = await this.axiosInstance.put(
         url,
         data,
-        { ...this.config, ...config }
+        { ...config }
       );
       return {
         status: response.status,
@@ -99,7 +90,6 @@ export class HttpClient {
         url,
         data,
         {
-          ...this.config,
           ...config
         }
       );
@@ -120,7 +110,6 @@ export class HttpClient {
   ): Promise<IBaseResponse<T>> {
     try {
       const response: AxiosResponse<T> = await this.axiosInstance.delete(url, {
-        ...this.config,
         ...config
       });
       return {
@@ -161,10 +150,9 @@ export class HttpClient {
           success: false
         };
       } else if (axiosError.request) {
-        // CORS hatası veya ağ hatası
         console.log("Ağ hatası:", axiosError.message);
         return {
-          status: 0, // Ağ hataları için genellikle 0 kullanılır
+          status: 0,
           message: "Ağ hatası veya CORS sorunu",
           success: false
         };

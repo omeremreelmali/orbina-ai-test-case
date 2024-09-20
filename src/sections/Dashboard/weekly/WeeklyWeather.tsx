@@ -1,0 +1,51 @@
+import CustomCard from "@/components/Cards/CustomCard/CustomCard";
+import { RootState } from "@/redux/Store";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { IForecastItem, IWeatherWeeklyResponse } from "@/types/weather";
+import { kelvinToCelsius } from "@/helpers/calculator";
+import WeeklyCard from "@/components/Cards/WeeklyCard/WeeklyCard";
+import TodayCard from "@/components/Cards/TodayCard/TodayCard";
+
+export default function WeeklyWeather() {
+  const weeklyWeather: IWeatherWeeklyResponse | null = useSelector(
+    (state: RootState) => state.weather.WeeklyWeather
+  );
+
+  if (!weeklyWeather) {
+    return <CustomCard>Hava durumu verisi yükleniyor...</CustomCard>;
+  }
+
+  // Her gün için bir tahmin alın (5 günlük tahmin)
+  const dailyForecasts = weeklyWeather.list.filter(
+    (_, index) => index % 8 === 0
+  );
+
+  const [selectedForecast, setSelectedForecast] =
+    useState<IForecastItem | null>(dailyForecasts[0]);
+
+  return (
+    <>
+      <CustomCard>
+        <h2>{weeklyWeather.city.name} için 5 Günlük Hava Durumu</h2>
+      </CustomCard>
+      <div className="flex gap-3 mt-5 ">
+        {dailyForecasts.map((forecast, index) => (
+          <WeeklyCard
+            selected={selectedForecast?.dt == forecast.dt}
+            forecast={forecast}
+            key={forecast.dt}
+            onClick={(value) => {
+              setSelectedForecast(value);
+              console.log(value);
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="mt-5">
+        {selectedForecast && <TodayCard weatherCurrent={selectedForecast} />}
+      </div>
+    </>
+  );
+}
