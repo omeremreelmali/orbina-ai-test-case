@@ -3,6 +3,7 @@ import CustomCard from "../CustomCard/CustomCard";
 import { kelvinToCelsius } from "@/helpers/calculator";
 import { IForecastItem } from "@/types/weather";
 import { weatherTranslations } from "@/constants/Weather";
+import Image from "next/image";
 
 export default function WeeklyCard({
   forecast,
@@ -26,9 +27,11 @@ export default function WeeklyCard({
             weekday: "long"
           })}
         </h3>
-        <img
+        <Image
           src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`}
           alt={forecast.weather[0].description}
+          width={100}
+          height={100}
         />
         <p>
           {weatherTranslations[forecast.weather[0].description.toLowerCase()]}

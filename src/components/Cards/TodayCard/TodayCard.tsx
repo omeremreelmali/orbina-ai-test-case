@@ -12,6 +12,7 @@ import {
 import CustomCard from "../CustomCard/CustomCard";
 import { IForecastItem, IWeatherCurrentResponse } from "@/types/weather";
 import { weatherTranslations } from "@/constants/Weather";
+import Image from "next/image";
 
 export default function TodayCard({
   weatherCurrent
@@ -25,10 +26,12 @@ export default function TodayCard({
           <h2 className="text-2xl font-bold mb-4">{weatherCurrent.name}</h2>
         )}
         <div className="flex items-center mb-4">
-          <img
+          <Image
             src={`http://openweathermap.org/img/wn/${weatherCurrent.weather[0].icon}@2x.png`}
             alt={weatherCurrent.weather[0].description}
             className="w-16 h-16 mr-4"
+            width={100}
+            height={100}
           />
           <div>
             <p className="text-4xl font-bold">
