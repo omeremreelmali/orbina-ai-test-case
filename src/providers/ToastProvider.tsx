@@ -64,7 +64,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
       {children}
       {isOpen && (
         <div
-          className={`fixed max-w-sm rounded-lg p-4 shadow-lg transition-opacity duration-300 ${
+          className={`fixed max-w-sm rounded-lg p-4 shadow-lg transition-opacity duration-300 z-50 ${
             positionClasses[options.position || "bottom-right"]
           } ${variantClasses[options.variant || "info"]}`}
         >
