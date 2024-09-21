@@ -16,12 +16,14 @@ export default function WeeklyCard({
 }) {
   return (
     <div
-      className={`w-1/5  p-2 border-1  rounded-md cursor-pointer hover:bg-gray-100 ${
+      className={`w-[200px] lg:w-1/5 p-2 border-1 rounded-md cursor-pointer hover:bg-gray-100 ${
         selected ? "bg-graybg border-neutral-950" : "bg-white border-gray-200"
       }`}
       onClick={() => onClick(forecast)}
     >
-      <div className={`flex flex-col items-center justify-center  `}>
+      <div
+        className={`w-[200px] lg:w-full flex flex-col items-center justify-center  `}
+      >
         <h3 className={` text-gray-500 font-bold text-lg`}>
           {new Date(forecast.dt * 1000).toLocaleDateString("tr-TR", {
             weekday: "long"

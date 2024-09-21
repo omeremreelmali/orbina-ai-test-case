@@ -24,15 +24,12 @@ export default function SidebarDashboard() {
   });
 
   return (
-    <Box className="h-full relative">
+    <Box className="lg:h-full relative">
       <SelectCity />
 
       {weatherCurrent && (
-        <div
-          className="flex flex-col 
-         mt-8"
-        >
-          <div>
+        <div className="flex flex-col mt-8">
+          <div className="hidden lg:block">
             <Image
               src={`http://openweathermap.org/img/wn/${weatherCurrent.weather[0].icon}@4x.png`}
               alt={weatherCurrent.weather[0].description}
@@ -63,7 +60,7 @@ export default function SidebarDashboard() {
               </p>
             </div>
           </div>
-          <div className="absolute bottom-0">
+          <div className="block lg:absolute bottom-0">
             <Image
               src={`/images/${turkishToEnglish(selectedCity.name)}.jpg`}
               alt={selectedCity.name}

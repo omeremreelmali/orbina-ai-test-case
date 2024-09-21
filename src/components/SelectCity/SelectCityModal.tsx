@@ -25,31 +25,29 @@ export default function SelectCityModal() {
   }, [selectedCity]);
 
   return (
-    <div className="flex ">
-      <Box
-        className={`w-2/12  py-10 border-r border-gray-300 h-[80vh] pr-4 overflow-y-scroll ${styles.leftSidebar}`}
+    <section className="flex flex-col lg:flex-row">
+      <aside
+        className={`w-ful lg:w-2/12 py-10  lg:border-r border-gray-300 h-[80vh] pr-4 overflow-y-scroll ${styles.leftSidebar}`}
       >
-        <div className="space-y-1">
-          {TURKEY_CITIES.map((city) => (
-            <Button
-              key={city.id}
-              ref={selectedCity.id === city.id ? selectedCityRef : null}
-              onClick={() => {
-                dispatch(setSelectedCity(city));
-              }}
-              className={`w-full text-left hover:bg-gray-100 px-2 py-1 rounded-md ${
-                selectedCity.id == city.id ? "bg-graybg" : ""
-              }`}
-            >
-              {city.name}
-            </Button>
-          ))}
-        </div>
-      </Box>
+        {TURKEY_CITIES.map((city, index) => (
+          <Button
+            key={index}
+            ref={selectedCity.id === city.id ? selectedCityRef : null}
+            onClick={() => {
+              dispatch(setSelectedCity(city));
+            }}
+            className={`w-full text-left hover:bg-gray-100 px-2 py-1 rounded-md ${
+              selectedCity.id == city.id ? "bg-graybg" : ""
+            }`}
+          >
+            <p> {city.name}</p>
+          </Button>
+        ))}
+      </aside>
 
-      <div className="w-10/12  py-10 px-8 h-full bg-graybg h-[80vh] flex align-items-center justify-items-center">
+      <main className="hidden lg:flex lg:w-10/12 py-10 px-8 bg-graybg h-[80vh] justify-center items-center">
         <Map />
-      </div>
-    </div>
+      </main>
+    </section>
   );
 }

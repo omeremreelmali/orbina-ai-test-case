@@ -31,8 +31,8 @@ export default function WeeklyWeather() {
       <CustomCard>
         <h2>{weeklyWeather?.city.name} için 5 Günlük Hava Durumu</h2>
       </CustomCard>
-      <div className="flex flex-col mt-5 pr-20">
-        <div className="flex gap-4  mt-5">
+      <div className="flex flex-col mt-5 pr-0 lg:pr-20">
+        <div className="flex gap-3 mt-5 w-full overflow-x-auto lg:overflow-x-hidden">
           {dailyForecasts.map((forecast, index) => (
             <WeeklyCard
               selected={selectedForecast?.dt == forecast.dt}

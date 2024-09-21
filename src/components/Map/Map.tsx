@@ -37,9 +37,6 @@ const City = (
       data-city-name={cityName.toLowerCase()}
       // title={cityName}
       className={styles.city}
-      style={{
-        content: "attr(data-city-name)"
-      }}
       d={d}
     />
   );

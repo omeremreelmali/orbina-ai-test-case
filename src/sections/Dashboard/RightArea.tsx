@@ -7,7 +7,7 @@ import TodayWeather from "./today/TodayWeather";
 import WeeklyWeather from "./weekly/WeeklyWeather";
 
 export default function RightArea() {
-  const [tab, setTab] = useState<"today" | "week">("week");
+  const [tab, setTab] = useState<"today" | "week">("today");
 
   return (
     <div>
