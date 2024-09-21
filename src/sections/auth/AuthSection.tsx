@@ -2,9 +2,7 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Input } from "@headlessui/react";
-import { useApiKey } from "@/hooks/useApiKey";
 import { weatherService } from "@/services/WeatherService";
-import { AlertDialog } from "@radix-ui/themes";
 import { useToast } from "@/providers/ToastProvider";
 import { Routes } from "@/constants/Routes";
 import { useRouter } from "next/navigation";
