@@ -40,7 +40,6 @@ export default function WeeklyWeather() {
               key={forecast.dt}
               onClick={(value) => {
                 setSelectedForecast(value);
-                console.log(value);
               }}
             />
           ))}

@@ -132,11 +132,7 @@ export class HttpClient {
       const axiosError = error as AxiosError;
 
       if (axiosError.response) {
-        console.log("Hata yanıtı:", axiosError.response.data);
-        console.log("Hata durumu:", axiosError.response.status);
-
         if (axiosError.response.status === 401) {
-          console.log("401 Yetkilendirme hatası");
           return {
             status: axiosError.response.status,
             message: "API Key Hatalı",
@@ -150,14 +146,12 @@ export class HttpClient {
           success: false
         };
       } else if (axiosError.request) {
-        console.log("Ağ hatası:", axiosError.message);
         return {
           status: 0,
           message: "Ağ hatası veya CORS sorunu",
           success: false
         };
       } else {
-        console.log("Hata:", axiosError.message);
         return {
           status: 500,
           message: "Bilinmeyen bir hata oluştu",
@@ -165,7 +159,6 @@ export class HttpClient {
         };
       }
     } else {
-      console.log("Bilinmeyen hata:", error);
       return {
         status: 500,
         message: "Bilinmeyen bir hata oluştu",

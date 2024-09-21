@@ -48,7 +48,6 @@ export default function SelectCity() {
       selectedCity.name,
       apiKey || ""
     );
-    console.log("responseGETWEATHERWEEKLY", response);
     if (response.success) {
       dispatch(setWeeklyWeather(response.data));
     } else {

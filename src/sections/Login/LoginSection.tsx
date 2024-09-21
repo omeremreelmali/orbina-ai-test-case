@@ -51,7 +51,6 @@ export default function LoginSection() {
       });
       router.push(Routes.DASHBOARD);
     } else {
-      console.log("response", response);
       open({
         message: response.message,
         variant: "error",
@@ -59,7 +58,6 @@ export default function LoginSection() {
         duration: 2000
       });
     }
-    console.log("response GELEN ", response);
   };
 
   return (
