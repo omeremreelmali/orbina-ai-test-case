@@ -6,3 +6,4 @@ export const formatTime = (timestamp: number) => {
     minute: "2-digit"
   });
 };
+

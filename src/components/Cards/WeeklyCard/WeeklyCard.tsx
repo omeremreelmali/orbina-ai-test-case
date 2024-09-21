@@ -16,7 +16,7 @@ export default function WeeklyCard({
 }) {
   return (
     <div
-      className={`w-1/6  p-2 border-1  rounded-md cursor-pointer hover:bg-gray-100 ${
+      className={`w-1/5  p-2 border-1  rounded-md cursor-pointer hover:bg-gray-100 ${
         selected ? "bg-graybg border-neutral-950" : "bg-white border-gray-200"
       }`}
       onClick={() => onClick(forecast)}
@@ -36,9 +36,13 @@ export default function WeeklyCard({
         <p>
           {weatherTranslations[forecast.weather[0].description.toLowerCase()]}
         </p>
-        <p>Sıcaklık: {kelvinToCelsius(forecast.main.temp)}°C</p>
+        <p>
+          Sıcaklık: {kelvinToCelsius(forecast.main.temp)} <sup>°C</sup>
+        </p>
 
-        <p>Hissedilen: {kelvinToCelsius(forecast.main.feels_like)}°C</p>
+        <p>
+          Hissedilen: {kelvinToCelsius(forecast.main.feels_like)} <sup>°C</sup>
+        </p>
       </div>
     </div>
   );

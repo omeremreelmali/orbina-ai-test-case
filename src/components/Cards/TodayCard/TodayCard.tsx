@@ -7,7 +7,8 @@ import {
   WiStrongWind,
   WiSunrise,
   WiSunset,
-  WiThermometer
+  WiThermometer,
+  WiRain
 } from "react-icons/wi";
 import CustomCard from "../CustomCard/CustomCard";
 import { IForecastItem, IWeatherCurrentResponse } from "@/types/weather";
@@ -15,13 +16,15 @@ import { weatherTranslations } from "@/constants/Weather";
 import Image from "next/image";
 
 export default function TodayCard({
-  weatherCurrent
+  weatherCurrent,
+  className
 }: {
   weatherCurrent: IWeatherCurrentResponse | IForecastItem;
+  className?: string;
 }) {
   return (
-    <CustomCard>
-      <div className="p-4">
+    <CustomCard className={className}>
+      <div className="p-6">
         {"name" in weatherCurrent && (
           <h2 className="text-2xl font-bold mb-4">{weatherCurrent.name}</h2>
         )}
@@ -29,14 +32,13 @@ export default function TodayCard({
           <Image
             src={`http://openweathermap.org/img/wn/${weatherCurrent.weather[0].icon}@2x.png`}
             alt={weatherCurrent.weather[0].description}
-            className="w-16 h-16 mr-4"
+            className=" mr-4"
             width={100}
             height={100}
           />
           <div>
-
             <p className="text-4xl font-bold">
-              {kelvinToCelsius(weatherCurrent.main.temp)}°C
+              {kelvinToCelsius(weatherCurrent.main.temp)} <sup>°C</sup>
             </p>
             <p className="text-lg capitalize">
               {
@@ -53,7 +55,7 @@ export default function TodayCard({
             <div>
               <p className="text-sm">Hissedilen</p>
               <p className="font-bold">
-                {kelvinToCelsius(weatherCurrent.main.feels_like)}°C
+                {kelvinToCelsius(weatherCurrent.main.feels_like)} <sup>°C</sup>
               </p>
             </div>
           </div>
@@ -114,8 +116,8 @@ export default function TodayCard({
             <div>
               <p className="text-sm">Min/Maks Sıcaklık</p>
               <p className="font-bold">
-                {kelvinToCelsius(weatherCurrent.main.temp_min)}°C /
-                {kelvinToCelsius(weatherCurrent.main.temp_max)}°C
+                {kelvinToCelsius(weatherCurrent.main.temp_min)} <sup>°C</sup> /
+                {kelvinToCelsius(weatherCurrent.main.temp_max)} <sup>°C</sup>
               </p>
             </div>
           </div>

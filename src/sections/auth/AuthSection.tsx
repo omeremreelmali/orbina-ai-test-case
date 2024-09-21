@@ -1,25 +1,25 @@
 "use client";
 
-import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Input } from "@headlessui/react";
 import { useApiKey } from "@/hooks/useApiKey";
 import { weatherService } from "@/services/WeatherService";
 import { AlertDialog } from "@radix-ui/themes";
-import { useToast } from "@/components/Toast/Toast";
+import { useToast } from "@/providers/ToastProvider";
 import { Routes } from "@/constants/Routes";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { TURKEY_CITIES } from "@/constants/Cities";
 import { setSelectedCity, setWeatherCurrent } from "@/redux/Slices/Weather";
 import { IWeatherCurrentResponse } from "@/types/weather";
+import { useAuth } from "@/providers/AuthProvider";
 
 type Inputs = {
   apiKey: string;
 };
 
 export default function AuthSection() {
-  const { apiKey, saveApiKey } = useApiKey();
+  const { login } = useAuth();
   const dispatch = useDispatch();
   const router = useRouter();
   const { open } = useToast();
@@ -42,7 +42,7 @@ export default function AuthSection() {
 
     if (response.success) {
       const weatherCurrent = response.data as IWeatherCurrentResponse;
-      saveApiKey(data.apiKey);
+      login(data.apiKey);
       dispatch(setSelectedCity(initialCity));
       dispatch(setWeatherCurrent(weatherCurrent));
       open({

@@ -13,7 +13,7 @@ import {
   setWeeklyWeather
 } from "@/redux/Slices/Weather";
 import { TURKEY_CITIES } from "@/constants/Cities";
-import { useToast } from "../Toast/Toast";
+import { useToast } from "../../providers/ToastProvider";
 
 export default function SelectCity() {
   const dispatch = useDispatch();

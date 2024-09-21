@@ -31,22 +31,25 @@ export default function WeeklyWeather() {
       <CustomCard>
         <h2>{weeklyWeather?.city.name} için 5 Günlük Hava Durumu</h2>
       </CustomCard>
-      <div className="flex gap-3 mt-5 ">
-        {dailyForecasts.map((forecast, index) => (
-          <WeeklyCard
-            selected={selectedForecast?.dt == forecast.dt}
-            forecast={forecast}
-            key={forecast.dt}
-            onClick={(value) => {
-              setSelectedForecast(value);
-              console.log(value);
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="mt-5">
-        {selectedForecast && <TodayCard weatherCurrent={selectedForecast} />}
+      <div className="flex flex-col mt-5 pr-20">
+        <div className="flex gap-4  mt-5">
+          {dailyForecasts.map((forecast, index) => (
+            <WeeklyCard
+              selected={selectedForecast?.dt == forecast.dt}
+              forecast={forecast}
+              key={forecast.dt}
+              onClick={(value) => {
+                setSelectedForecast(value);
+                console.log(value);
+              }}
+            />
+          ))}
+        </div>
+        <div className="mt-5 w-full">
+          {selectedForecast && (
+            <TodayCard weatherCurrent={selectedForecast} className="w-full" />
+          )}
+        </div>
       </div>
     </>
   );

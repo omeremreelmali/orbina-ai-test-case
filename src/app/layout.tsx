@@ -1,10 +1,13 @@
+"use client";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
-import { ToastProvider } from "@/components/Toast/Toast";
+import { ToastProvider } from "@/providers/ToastProvider";
 import { ReduxProvider } from "@/redux/ReduxProvider";
+import { AuthProvider } from "@/providers/AuthProvider";
+import { useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,11 +20,6 @@ const geistMono = localFont({
   weight: "100 900"
 });
 
-export const metadata: Metadata = {
-  title: "Orbina AI Test :Case : Omer Emre Elmalı",
-  description: "Orbina AI Test :Case : Omer Emre Elmalı"
-};
-
 export default function RootLayout({
   children
 }: Readonly<{
@@ -33,9 +31,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          <Theme>
-            <ToastProvider>{children}</ToastProvider>
-          </Theme>
+          <AuthProvider>
+            <Theme>
+              <ToastProvider>{children}</ToastProvider>
+            </Theme>
+          </AuthProvider>
         </ReduxProvider>
       </body>
     </html>
