@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hava Durumu Uygulaması
 
-## Getting Started
+Bu proje, Türkiye'deki şehirlerin hava durumu bilgilerini gösteren bir web uygulamasıdır. Kullanıcılar, API anahtarı ile giriş yaparak Türkiye'nin farklı şehirlerinin güncel hava durumu bilgilerini görüntüleyebilirler.
 
-First, run the development server:
+## Özellikler
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- API anahtarı ile kullanıcı girişi
+- Türkiye şehirlerinin hava durumu bilgilerini görüntüleme
+- Şehir seçimi
+- Güncel hava durumu verileri
+- Responsive tasarım
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Teknolojiler
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js
+- React
+- Redux Toolkit
+- Axios
+- React Hook Form
+- Tailwind CSS
+- Radix UI
+- TypeScript
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Kullanılan API
 
-## Learn More
+Bu uygulama, OpenWeatherMap API'sini kullanmaktadır. Hava durumu verilerini almak için bu API'ye istekler gönderilmektedir. Uygulamayı kullanmak için bir OpenWeatherMap API anahtarı gerekmektedir.
 
-To learn more about Next.js, take a look at the following resources:
+API Dokümantasyonu: [OpenWeatherMap API Docs](https://openweathermap.org/api)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Geliştirme Ortamında Çalıştırma
 
-## Deploy on Vercel
+Projeyi geliştirme ortamında çalıştırmak için aşağıdaki adımları izleyin:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Repoyu klonlayın:
+   ```
+   git clone [https://github.com/your-username/weather-app.git](https://github.com/omeremreelmali/orbina-ai-test-case.git)
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Proje dizinine gidin:
+   ```
+   cd orbina-ai-test-case
+   ```
+
+3. Bağımlılıkları yükleyin:
+   ```
+   npm install
+   ```
+
+4. Geliştirme sunucusunu başlatın:
+   ```
+   npm run dev
+   ```
+
+5. Tarayıcınızda `http://localhost:3000` adresine giderek uygulamayı görüntüleyin.
+
+## Kullanım
+
+1. Uygulamayı açın ve API anahtarınızı girerek giriş yapın.
+2. Ana sayfada, varsayılan olarak İstanbul'un hava durumu bilgileri görüntülenecektir.
+3. Şehir seçimi yaparak diğer şehirlerin hava durumu bilgilerini görüntüleyebilirsiniz.
+
+## Katkıda Bulunma
+
+1. Bu repoyu fork edin
+2. Yeni bir özellik dalı oluşturun (`git checkout -b feature/AmazingFeature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Add some AmazingFeature'`)
+4. Dalınıza push yapın (`git push origin feature/AmazingFeature`)
+5. Bir Pull Request oluşturun
+
+## Lisans
+
+Bu proje [MIT lisansı](https://opensource.org/licenses/MIT) altında lisanslanmıştır.
