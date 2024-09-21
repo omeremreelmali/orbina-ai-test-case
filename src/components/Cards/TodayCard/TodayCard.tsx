@@ -34,6 +34,7 @@ export default function TodayCard({
             height={100}
           />
           <div>
+
             <p className="text-4xl font-bold">
               {kelvinToCelsius(weatherCurrent.main.temp)}°C
             </p>
