@@ -68,7 +68,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
             positionClasses[options.position || "bottom-right"]
           } ${variantClasses[options.variant || "info"]}`}
         >
-          <p className="text-md font-semibold">{options.message}</p>
+          <p className="text-md font-semibold text-white">{options.message}</p>
         </div>
       )}
     </ToastContext.Provider>
