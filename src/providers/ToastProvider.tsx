@@ -39,10 +39,10 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   const close = useCallback(() => setIsOpen(false), []);
 
   useEffect(() => {
-    // if (isOpen && options.duration) {
-    //   const timer = setTimeout(() => close(), options.duration);
-    //   return () => clearTimeout(timer);
-    // }
+    if (isOpen && options.duration) {
+      const timer = setTimeout(() => close(), options.duration);
+      return () => clearTimeout(timer);
+    }
   }, [isOpen, options.duration, close]);
 
   const positionClasses = {
