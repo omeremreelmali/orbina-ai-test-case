@@ -16,7 +16,7 @@ type Inputs = {
   apiKey: string;
 };
 
-export default function AuthSection() {
+export default function LoginSection() {
   const { login } = useAuth();
   const dispatch = useDispatch();
   const router = useRouter();

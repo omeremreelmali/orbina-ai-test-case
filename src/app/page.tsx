@@ -1,5 +1,5 @@
-import AuthSection from "@/sections/Auth/AuthSection";
+import LoginSection from "@/sections/Login/LoginSection";
 
 export default function Home() {
-  return <AuthSection />;
+  return <LoginSection />;
 }
